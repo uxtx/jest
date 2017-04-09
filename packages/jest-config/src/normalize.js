@@ -405,6 +405,32 @@ function normalize(config: InitialConfig, argv: Object = {}) {
     newConfig.testMatch = [];
   }
 
+  // if argv.throwErrorOnConsole is set to either string or array of string,
+  // ensure that it's using a valid console type.
+  if (argv.throwErrorOnConsole) {
+    let consoleErr  = argv.throwErrorOnConsole;
+    const valid = ['debug', 'error', 'info', 'log', 'warn'];
+    if (Array.isArray(consoleErr) && !consoleErr.length) {
+      consoleErr = false;
+    }
+    if (Array.isArray(consoleErr) && consoleErr.length) {
+      const lc = consoleErr.map(type => valid.indexOf(type)).indexOf(-1) >= 0;
+      if (lc) {
+        throw createConfigError(
+          `  Configuration options ${chalk.bold('throwErrorOnConsole')}` +
+            `must pass in a set of valid console message types.`,
+        );
+      }
+    }
+    if (typeof consoleErr === 'string' && valid.indexOf(consoleErr) < 0) {
+      throw createConfigError(
+        `  Configuration options ${chalk.bold('throwErrorOnConsole')}` +
+          `must pass in a valid console message type.`,
+      );
+    }
+    newConfig.throwErrorOnConsole = consoleErr;
+  }
+
   // If argv.json is set, coverageReporters shouldn't print a text report.
   if (argv.json) {
     newConfig.coverageReporters = (newConfig.coverageReporters || [])

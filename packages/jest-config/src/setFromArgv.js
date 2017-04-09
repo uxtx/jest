@@ -69,10 +69,6 @@ function setFromArgv(config, argv) {
     config.testNamePattern = argv.testNamePattern;
   }
 
-  if (argv.throwErrorOnConsole) {
-    config.throwErrorOnConsole = argv.throwErrorOnConsole;
-  }
-
   if (argv.updateSnapshot) {
     config.updateSnapshot = argv.updateSnapshot;
   }
