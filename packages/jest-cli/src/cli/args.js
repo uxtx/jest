@@ -217,6 +217,14 @@ const options = {
       '`<rootDir>/path/to/testRunner.js`.',
     type: 'string',
   },
+  throwErrorOnConsole: {
+    default: false,
+    description: 'Allows to specify whether to throw errors when Jest ' +
+      ' encounters a console message. You may specify either `true` to throw' +
+      ' errors on all console messages, or specify a specific console message' +
+      ' type, or set of types to throw errors on.',
+    type: 'boolean, array, or string',
+  },
   updateSnapshot: {
     alias: 'u',
     default: false,

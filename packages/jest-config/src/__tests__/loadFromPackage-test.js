@@ -16,7 +16,8 @@ describe('loadFromPackage', () => {
   const MOCK_FILE_INFO = {
     '.': `{
       "jest": {
-        "testMatch": ["match.js"]
+        "testMatch": ["match.js"],
+        "throwErrorOnConsole": ["warn","error"]
       }
     }`,
     broken: `{
@@ -40,6 +41,7 @@ describe('loadFromPackage', () => {
   it('loads configuration from a `package.json` at `root`', async () => {
     const config = await loadFromPackage('.', {});
     expect(config.testMatch).toEqual(['match.js']);
+    expect(config.throwErrorOnConsole).toEqual(['warn', 'error']);
   });
 
   it('returns a config object even if `jest` is not defined in `package.json`.', async () => {

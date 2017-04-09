@@ -75,6 +75,7 @@ module.exports = ({
   testResultsProcessor: 'processor-node-module',
   testRunner: 'jasmine2',
   testURL: 'about:blank',
+  throwErrorOnConsole: false,
   timers: 'real',
   transform: {
     '^.+\\.js$': '<rootDir>/preprocessor.js',

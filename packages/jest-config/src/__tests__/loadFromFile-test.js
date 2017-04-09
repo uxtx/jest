@@ -18,7 +18,8 @@ describe('loadFromFile', () => {
       "testMatch": ["match.js"
     }`,
     'config.js': `{
-      "testMatch": ["match.js"]
+      "testMatch": ["match.js"],
+      "throwErrorOnConsole": ["warn","error"]
     }`,
     'configWithRootDir.js': `{
       "rootDir": "testDir"
@@ -32,6 +33,7 @@ describe('loadFromFile', () => {
   it('loads configuration from a file at `filePath`.', async () => {
     const config = await loadFromFile('config.js', {});
     expect(config.testMatch).toEqual(['match.js']);
+    expect(config.throwErrorOnConsole).toEqual(['warn', 'error']);
   });
 
   it('throws if the file at `filePath` cannot be parsed as JSON.', () => {
