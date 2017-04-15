@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2014-present, Facebook, Inc. All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
@@ -122,6 +122,31 @@ const normalizeCollectCoverageOnlyFrom = (
     },
     Object.create(null),
   );
+};
+
+const normalizeThrowErrorOnConsole = (config: InitialConfig, key: string) => {
+  let value;
+  let passedVal = config[key];
+  if (!passedVal) {
+    value = false;
+  }
+  if (passedVal) {
+    const valid = ['debug', 'error', 'info', 'log', 'warn'];
+    if (!passedVal.length) {
+      return (passedVal = null);
+    }
+    if (passedVal.length) {
+      const bogus = passedVal.map(type => valid.indexOf(type)).indexOf(-1) >= 0;
+      if (bogus) {
+        throw createConfigError(
+          `  Configuration option ${chalk.bold('throwErrorOnConsole')} ` +
+            `must pass in a set of valid console message types.`,
+        );
+      }
+    }
+    value = passedVal;
+  }
+  return value;
 };
 
 const normalizeCollectCoverageFrom = (config: InitialConfig, key: string) => {
@@ -339,6 +364,9 @@ function normalize(config: InitialConfig, argv: Object = {}) {
             );
           }
           break;
+        case 'throwErrorOnConsole':
+          value = normalizeThrowErrorOnConsole(config, key);
+          break;
         case 'automock':
         case 'bail':
         case 'browser':
@@ -403,32 +431,6 @@ function normalize(config: InitialConfig, argv: Object = {}) {
     // Prevent the default testMatch conflicting with any explicitly
     // configured `testRegex` value
     newConfig.testMatch = [];
-  }
-
-  // if argv.throwErrorOnConsole is set to either string or array of string,
-  // ensure that it's using a valid console type.
-  if (argv.throwErrorOnConsole) {
-    let consoleErr  = argv.throwErrorOnConsole;
-    const valid = ['debug', 'error', 'info', 'log', 'warn'];
-    if (Array.isArray(consoleErr) && !consoleErr.length) {
-      consoleErr = false;
-    }
-    if (Array.isArray(consoleErr) && consoleErr.length) {
-      const lc = consoleErr.map(type => valid.indexOf(type)).indexOf(-1) >= 0;
-      if (lc) {
-        throw createConfigError(
-          `  Configuration options ${chalk.bold('throwErrorOnConsole')}` +
-            `must pass in a set of valid console message types.`,
-        );
-      }
-    }
-    if (typeof consoleErr === 'string' && valid.indexOf(consoleErr) < 0) {
-      throw createConfigError(
-        `  Configuration options ${chalk.bold('throwErrorOnConsole')}` +
-          `must pass in a valid console message type.`,
-      );
-    }
-    newConfig.throwErrorOnConsole = consoleErr;
   }
 
   // If argv.json is set, coverageReporters shouldn't print a text report.

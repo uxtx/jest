@@ -50,7 +50,7 @@ module.exports = ({
   testRegex: '',
   testResultsProcessor: null,
   testURL: 'about:blank',
-  throwErrorOnConsole: false,
+  throwErrorOnConsole: null,
   timers: 'real',
   transformIgnorePatterns: [NODE_MODULES_REGEXP],
   useStderr: false,

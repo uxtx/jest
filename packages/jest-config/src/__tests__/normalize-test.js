@@ -633,6 +633,54 @@ describe('testMatch', () => {
       });
     }).toThrowErrorMatchingSnapshot();
   });
+  it('throws if throwErrorOnConsole is set with invalid string', () => {
+    expect(() => {
+      normalize({
+        rootDir: '/root',
+        throwErrorOnConsole: 'bad',
+      });
+    }).toThrowErrorMatchingSnapshot();
+  });
+  it('throws if throwErrorOnConsole is set with false', () => {
+    expect(() => {
+      normalize({
+        rootDir: '/root',
+        throwErrorOnConsole: false,
+      });
+    }).toThrowErrorMatchingSnapshot();
+  });
+
+  it('throws if throwErrorOnConsole is set with a string', () => {
+    expect(() => {
+      normalize({
+        rootDir: '/root',
+        throwErrorOnConsole: 'error',
+      });
+    }).toThrowErrorMatchingSnapshot();
+  });
+
+  it('throws if throwErrorOnConsole is set with invalid message array', () => {
+    expect(() => {
+      normalize({
+        rootDir: '/root',
+        throwErrorOnConsole: ['debug', 'bad'],
+      });
+    }).toThrowErrorMatchingSnapshot();
+  });
+  it('passes if throwErrorOnConsole is set with empty array', () => {
+    const {config} = normalize({
+      rootDir: '/root',
+      throwErrorOnConsole: [],
+    });
+    expect(config.throwErrorOnConsole).toBe(null);
+  });
+  it('passes if throwErrorOnConsole is set with valid message array', () => {
+    const {config} = normalize({
+      rootDir: '/root',
+      throwErrorOnConsole: ['debug', 'warn'],
+    });
+    expect(config.throwErrorOnConsole).toEqual(['debug', 'warn']);
+  });
 });
 
 describe('preset', () => {

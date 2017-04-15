@@ -56,3 +56,67 @@ exports[`testMatch throws if testRegex and testMatch are both specified 1`] = `
   https://facebook.github.io/jest/docs/configuration.html
 </>"
 `;
+
+exports[`testMatch throws if throwErrorOnConsole is set with a string 1`] = `
+"<red><bold><bold>●<bold> Validation Error:
+
+  Option <bold>\\"throwErrorOnConsole\\" must be of type:
+    <bold><green>array<red>
+  but instead received:
+    <bold><red>string<red>
+
+  Example:
+  {
+    <bold>\\"throwErrorOnConsole\\": <bold>[\\"warn\\", \\"error\\"]
+  }
+
+  <bold>Configuration Documentation:
+  https://facebook.github.io/jest/docs/configuration.html
+</>"
+`;
+
+exports[`testMatch throws if throwErrorOnConsole is set with false 1`] = `
+"<red><bold><bold>●<bold> Validation Error:
+
+  Option <bold>\\"throwErrorOnConsole\\" must be of type:
+    <bold><green>array<red>
+  but instead received:
+    <bold><red>boolean<red>
+
+  Example:
+  {
+    <bold>\\"throwErrorOnConsole\\": <bold>[\\"warn\\", \\"error\\"]
+  }
+
+  <bold>Configuration Documentation:
+  https://facebook.github.io/jest/docs/configuration.html
+</>"
+`;
+
+exports[`testMatch throws if throwErrorOnConsole is set with invalid message array 1`] = `
+"<red><bold><bold>● <bold>Validation Error:
+
+  Configuration option <bold>throwErrorOnConsole must pass in a set of valid console message types.
+
+  <bold>Configuration Documentation:
+  https://facebook.github.io/jest/docs/configuration.html
+</>"
+`;
+
+exports[`testMatch throws if throwErrorOnConsole is set with invalid string 1`] = `
+"<red><bold><bold>●<bold> Validation Error:
+
+  Option <bold>\\"throwErrorOnConsole\\" must be of type:
+    <bold><green>array<red>
+  but instead received:
+    <bold><red>string<red>
+
+  Example:
+  {
+    <bold>\\"throwErrorOnConsole\\": <bold>[\\"warn\\", \\"error\\"]
+  }
+
+  <bold>Configuration Documentation:
+  https://facebook.github.io/jest/docs/configuration.html
+</>"
+`;
