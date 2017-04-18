@@ -83,8 +83,8 @@ Ran all test suites.
 
 exports[`Snapshot works with escaped characters 1`] = `
 "Test Suites: 1 passed, 1 total
-Tests:       1 passed, 1 total
-Snapshots:   1 added, 1 total
+Tests:       2 passed, 2 total
+Snapshots:   2 added, 2 total
 Time:        <<REPLACED>>
 Ran all test suites matching \\"snapshot-test.js\\".
 "
@@ -92,8 +92,8 @@ Ran all test suites matching \\"snapshot-test.js\\".
 
 exports[`Snapshot works with escaped characters 2`] = `
 "Test Suites: 1 passed, 1 total
-Tests:       2 passed, 2 total
-Snapshots:   1 added, 1 passed, 2 total
+Tests:       3 passed, 3 total
+Snapshots:   1 added, 2 passed, 3 total
 Time:        <<REPLACED>>
 Ran all test suites matching \\"snapshot-test.js\\".
 "
@@ -101,8 +101,8 @@ Ran all test suites matching \\"snapshot-test.js\\".
 
 exports[`Snapshot works with escaped characters 3`] = `
 "Test Suites: 1 passed, 1 total
-Tests:       2 passed, 2 total
-Snapshots:   2 passed, 2 total
+Tests:       3 passed, 3 total
+Snapshots:   3 passed, 3 total
 Time:        <<REPLACED>>
 Ran all test suites matching \\"snapshot-test.js\\".
 "

@@ -125,7 +125,7 @@ describe('Snapshot', () => {
     let result = runJest('snapshot-escape', ['snapshot-test.js']);
     let stderr = result.stderr.toString();
 
-    expect(stderr).toMatch('1 snapshot written');
+    expect(stderr).toMatch('2 snapshots written in 1 test suite.');
     expect(result.status).toBe(0);
     expect(extractSummary(stderr).summary).toMatchSnapshot();
 
